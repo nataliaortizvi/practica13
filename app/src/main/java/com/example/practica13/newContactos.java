@@ -2,7 +2,9 @@ package com.example.practica13;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,10 @@ public class newContactos extends AppCompatActivity implements View.OnClickListe
         txnombre = findViewById(R.id.txnombre);
         txnumber = findViewById(R.id.txnumber);
         listaContactos = findViewById(R.id.listaContactos);
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.CALL_PHONE,
+        }, 1);
 
         db = FirebaseDatabase.getInstance();
         adapter = new UserAdapter();
