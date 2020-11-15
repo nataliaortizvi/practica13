@@ -77,13 +77,15 @@ public class newContactos extends AppCompatActivity implements View.OnClickListe
                 String number = txnumber.getText().toString();
                 String user = txnombre.getText().toString();
 
-                DatabaseReference reference = db.getReference().child(usuarioIn).push();
+                DatabaseReference reference = db.getReference().child(usuarioIn).child(id);
                 Usuario usuario = new Usuario(
                         user,
                         id,
                         number
                 );
                 reference.setValue(usuario);
+
+                adapter.laRama(usuarioIn);
 
                 txnombre.setText("");
                 txnumber.setText("");

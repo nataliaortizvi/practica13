@@ -1,5 +1,6 @@
 package com.example.practica13;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,12 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class UserAdapter extends BaseAdapter {
 
     //Data
     private ArrayList<Usuario> usuarios;
+    private String ramita;
 
     public UserAdapter(){
         usuarios = new ArrayList<>();
@@ -26,6 +31,10 @@ public class UserAdapter extends BaseAdapter {
     public void clear(){
         usuarios.clear();
         notifyDataSetChanged();
+    }
+
+    public void laRama(String rama){
+        ramita = rama;
     }
 
     @Override
@@ -59,6 +68,16 @@ public class UserAdapter extends BaseAdapter {
 
         nombreRow.setText(usuario.getUser());
         numberRow.setText(usuario.getNumber());
+
+
+        btdelete.setOnClickListener(
+                (v)->{
+                    String id = usuario.getId();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(ramita).child(id);
+                    reference.setValue(null);
+                    Log.d("AAAAAA", ""+ramita);
+                }
+        );
 
         return renglonView;
     }
