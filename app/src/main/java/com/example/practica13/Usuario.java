@@ -1,14 +1,15 @@
 package com.example.practica13;
 
 public class Usuario {
-    private String user, id;
+    private String user, id, number;
 
     public Usuario() {
     }
 
-    public Usuario(String user, String id) {
+    public Usuario(String user, String id, String number) {
         this.user = user;
         this.id = id;
+        this.number = number;
     }
 
     public String getUser() {
@@ -26,4 +27,13 @@ public class Usuario {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }
+

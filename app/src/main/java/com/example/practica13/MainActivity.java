@@ -31,7 +31,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        String id = db.getReference().child("Usuario").push().getKey();
+
+        String nombresito = txname.getText().toString();
+        if(revisar(nombresito)){
+            Intent i = new Intent(this, newContactos.class);
+            i.putExtra("username", nombresito);
+            startActivity(i);
+        }
+
+
+        /*String id = db.getReference().child("Usuario").push().getKey();
         DatabaseReference reference = db.getReference().child("Usuario").child(id);
         Usuario usuario = new Usuario(
                 txname.getText().toString(),
@@ -41,5 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent i = new Intent(this, newContactos.class);
         startActivity(i);
+        */
+    }
+
+    public boolean revisar(String nombresito){
+        return (nombresito.equals("") || nombresito == null) ? false : true;
     }
 }
