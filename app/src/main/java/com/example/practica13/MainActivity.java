@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btingresar;
-    private EditText txname;
-    private FirebaseDatabase db;
+    private Button btingresar, btnotengo;
+    private EditText txcorreo, txcontra;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -24,37 +25,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btingresar = findViewById(R.id.btingresar);
-        txname = findViewById(R.id.txnombre);
-        db = FirebaseDatabase.getInstance();
+        btnotengo = findViewById(R.id.btnotengo);
+        txcorreo = findViewById(R.id.txcorreo);
+        txcontra = findViewById(R.id.txcontra);
+
+        auth = FirebaseAuth.getInstance();
 
         btingresar.setOnClickListener(this);
+        btnotengo.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btingresar:
+                auth.signInWithEmailAndPassword(txcorreo.getText().toString(),txcontra.getText().toString())
+                        .addOnCompleteListener(
+                                task -> {
+                                    if(task.isSuccessful()){
+                                        Intent i = new Intent(this, newContactos.class);
+                                        startActivity(i);
+                                        finish();
 
-        String nombresito = txname.getText().toString();
-        if(revisar(nombresito)){
-            Intent i = new Intent(this, newContactos.class);
-            i.putExtra("username", nombresito);
-            startActivity(i);
+                                    }else{
+                                        Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        );
+                break;
+            case R.id.btnotengo:
+                Intent i = new Intent(this, Registro.class);
+                startActivity(i);
+                finish();
+                break;
         }
-
-
-        /*String id = db.getReference().child("Usuario").push().getKey();
-        DatabaseReference reference = db.getReference().child("Usuario").child(id);
-        Usuario usuario = new Usuario(
-                txname.getText().toString(),
-                id
-        );
-        reference.setValue(usuario);
-
-        Intent i = new Intent(this, newContactos.class);
-        startActivity(i);
-        */
-    }
-
-    public boolean revisar(String nombresito){
-        return (nombresito.equals("") || nombresito == null) ? false : true;
     }
 }

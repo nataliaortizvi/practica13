@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,10 +22,13 @@ public class UserAdapter extends BaseAdapter {
     //Data
     private ArrayList<Usuario> usuarios;
     private String ramita;
+    private FirebaseAuth auth;
+    private FirebaseDatabase db;
 
     public UserAdapter(){
         usuarios = new ArrayList<>();
     }
+
 
     public void addUser(Usuario usuario){
         usuarios.add(usuario);
@@ -76,9 +80,11 @@ public class UserAdapter extends BaseAdapter {
         btdelete.setOnClickListener(
                 (v)->{
                     String id = usuario.getId();
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(ramita).child(id);
+                    Log.d("aaaaaaa",""+id);
+                    Log.d("aaaaa", ""+ramita);
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuarios").child(ramita).child("Contactos").child(id);
                     reference.setValue(null);
-                    Log.d("AAAAAA", ""+ramita);
+
                 }
         );
 

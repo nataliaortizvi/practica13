@@ -4,37 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Registro">
 
     <EditText
         android:id="@+id/txcorreo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="80dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txnombre" />
 
-    <Button
-        android:id="@+id/btingresar"
+    <EditText
+        android:id="@+id/txnombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="80dp"
-        android:backgroundTint="#00BCD4"
-        android:text="Ingresar"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txcontra" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txcontra"
@@ -48,15 +47,48 @@
         android:inputType="textPersonName"
         android:password="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txcorreo" />
 
+    <EditText
+        android:id="@+id/txcontrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:ems="10"
+        android:hint="Password again"
+        android:inputType="textPersonName"
+        android:password="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txcontra" />
+
+    <Button
+        android:id="@+id/btregistrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:backgroundTint="#00BCD4"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txcontrar" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Inicio de Sesión"
+        android:text="Registro"
         android:textColor="#00BCD4"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -65,12 +97,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnotengo"
+        android:id="@+id/btyatengo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:background="#FFFFFF"
-        android:text="    No tengo cuenta    "
+        android:text="    Ya tengo cuenta    "
         android:textAllCaps="false"
         android:textColor="#717171"
         app:layout_constraintBottom_toBottomOf="parent"
